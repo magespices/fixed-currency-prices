@@ -40,6 +40,9 @@ class Data extends AbstractHelper
     const BASE_CURRENCY_XPATH = 'currency/options/base';
 
     /** @var string  */
+    const DISPLAY_CURRENCY_XPATH = 'currency/options/default';
+
+    /** @var string  */
     const ERROR_LOG_FILE = '/var/log/fixed_currency_prices.log';
 
     /** @var RequestInterface */
@@ -79,6 +82,9 @@ class Data extends AbstractHelper
         $this->resourceConnection = $resourceConnection;
     }
 
+    /**
+     * @param Product $product
+     */
     public function fixCurrencyPrices(Product $product)
     {
         // should work only for changes made in default scope
@@ -236,7 +242,7 @@ class Data extends AbstractHelper
      */
     protected function getStoreCurrency($storeId): string
     {
-        return (string) $this->scopeConfig->getValue(self::BASE_CURRENCY_XPATH, ScopeInterface::SCOPE_STORE, $storeId);
+        return (string) $this->scopeConfig->getValue(self::DISPLAY_CURRENCY_XPATH, ScopeInterface::SCOPE_STORE, $storeId);
     }
 
     /**

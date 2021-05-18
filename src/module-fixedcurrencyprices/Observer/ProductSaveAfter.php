@@ -41,6 +41,6 @@ class ProductSaveAfter implements ObserverInterface
         /** @var Product $product */
         $product = $observer->getEvent()->getProduct();
 
-        $this->helper->fixedCurrencyPricesHelper($product);
+        $this->fixedCurrencyPricesHelper->fixCurrencyPrices($product);
     }
 }
